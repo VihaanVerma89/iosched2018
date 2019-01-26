@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -30,4 +29,26 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // Dagger
+    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+
+    // Architecture Components
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$rootProject.lifecycleVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.lifecycleVersion"
+    implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
+
+    api "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    // ThreeTenBP for the shared module only. Date and time API for Java.
+    testImplementation "org.threeten:threetenbp:$rootProject.threetenbpVersion"
+    compileOnly "org.threeten:threetenbp:$rootProject.threetenbpVersion:no-tzdb"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
 }
